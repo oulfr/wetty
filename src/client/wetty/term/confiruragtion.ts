@@ -6,12 +6,6 @@ import type { Options } from './options';
 import type { Term } from '../term';
 
 export function configureTerm(term: Term): void {
-  const options = loadOptions();
-  try {
-    term.options = options.xterm;
-  } catch {
-    /* Do nothing */
-  }
 
   const toggle = document.querySelector('#options .toggler');
   const optionsElem = document.getElementById('options');
