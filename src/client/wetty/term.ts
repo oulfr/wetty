@@ -11,7 +11,7 @@ import type { Socket } from 'socket.io-client';
 import themes, { ThemeName } from "./term/themes";
 import type { ITerminalOptions } from 'xterm';
 
-const TERMINAL_THEME = 'Hybrid' as ThemeName;
+const TERMINAL_THEME = 'Tokyo Night' as ThemeName;
 const THEME = themes[TERMINAL_THEME];
 
 console.log('Selected Theme Name:', TERMINAL_THEME);
