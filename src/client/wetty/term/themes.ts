@@ -289,7 +289,7 @@ export const TERMINAL_OPTIONS: ITerminalOptions = {
   fontWeightBold: 500,
   lineHeight: 1.06,
   letterSpacing: 0,
-  theme: modernMidnight,  // Default theme
+  theme: nordPro,  // Default theme
   scrollback: 5000,
   minimumContrastRatio: 4.5,  // WCAG AA compliance
   wordSeparator: " ()[]{}',\"`",
