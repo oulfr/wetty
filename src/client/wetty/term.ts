@@ -12,8 +12,19 @@ import themes, { ThemeName } from "./term/themes";
 import type { ITerminalOptions } from 'xterm';
 
 const TERMINAL_THEME = 'Tokyo Night' as ThemeName;
-const THEME = themes[TERMINAL_THEME];
 
+const THEME_OPTIONS: ITerminalOptions = {
+  allowProposedApi: true,
+  allowTransparency: false,
+  cursorBlink: false,
+  cursorStyle: 'block' as const,
+  fontFamily: '"Fira Code VF", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+  fontSize: 16,
+  fontWeight: 400,
+  fontWeightBold: 500,
+  lineHeight: 1.06,
+  theme: themes[TERMINAL_THEME]
+};
 export class Term extends Terminal {
   socket: Socket;
   fitAddon: FitAddon;
@@ -22,17 +33,7 @@ export class Term extends Terminal {
   constructor(socket: Socket) {
     
     const terminalOptions: ITerminalOptions = { 
-      allowProposedApi: true,
-      allowTransparency: false,
-      cursorBlink: false,
-      cursorStyle: 'block' as const, // Explicitly type as 'block'
-      fontFamily:
-        '"Fira Code VF", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-      fontSize: 14,
-      fontWeight: 400,
-      fontWeightBold: 500,
-      lineHeight: 1.06,
-      theme: THEME,
+     ...THEME_OPTIONS
     };
     
     super(terminalOptions);
