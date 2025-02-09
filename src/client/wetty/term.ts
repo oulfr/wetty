@@ -10,28 +10,41 @@ import type { Options } from './term/options';
 import type { Socket } from 'socket.io-client';
 import themes, { ThemeName } from "./term/themes";
 
-const TERMINAL_THEME= 'Tokyo Night' as ThemeName;
+const TERMINAL_THEME = 'Tokyo Night' as ThemeName;
 const THEME = themes[TERMINAL_THEME];
+
+console.log('Selected Theme Name:', TERMINAL_THEME);
+console.log('Theme Configuration:', THEME);
 
 export class Term extends Terminal {
   socket: Socket;
   fitAddon: FitAddon;
   loadOptions: () => Options;
+  
   constructor(socket: Socket) {
-    super({ 
+    console.log('Initializing Terminal with theme:', THEME);
+    
+    const terminalOptions = { 
       allowProposedApi: true,
       allowTransparency: false,
       cursorBlink: false,
       cursorStyle: "block",
-      // This is the monospace font family configured in Tailwind.
       fontFamily:
         '"Fira Code VF", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
       fontSize: 14,
       fontWeight: 400,
       fontWeightBold: 500,
       lineHeight: 1.06,
-      theme: THEME,  // Changed from THEME to theme: THEME
-    });
+      theme: THEME,
+    };
+    
+    console.log('Terminal options:', terminalOptions);
+    
+    super(terminalOptions);
+    
+    // Verify theme after initialization
+    console.log('Current terminal theme:', this.options.theme);
+    
     this.socket = socket;
     this.fitAddon = new FitAddon();
     this.loadAddon(this.fitAddon);
@@ -39,11 +52,14 @@ export class Term extends Terminal {
     this.loadAddon(new ImageAddon());
     this.loadOptions = loadOptions;
   }
+  
   resizeTerm(): void {
+    console.log('Resize event - Current theme:', this.options.theme);
     this.refresh(0, this.rows - 1);
     if (this.shouldFitTerm) this.fitAddon.fit();
     this.socket.emit('resize', { cols: this.cols, rows: this.rows });
   }
+  
   get shouldFitTerm(): boolean {
     return this.loadOptions().wettyFitTerminal ?? true;
   }
@@ -60,14 +76,38 @@ declare global {
 }
 
 export function terminal(socket: Socket): Term | undefined {
+  console.log('Creating new terminal instance');
   const term = new Term(socket);
-  if (_.isNull(termElement)) return undefined;
+  
+  if (_.isNull(termElement)) {
+    console.error('Terminal element is null');
+    return undefined;
+  }
+  
+  console.log('Opening terminal in element');
   termElement.innerHTML = '';
   term.open(termElement);
+  
+  // Verify theme after opening
+  console.log('Theme after opening terminal:', term.options.theme);
+  
   configureTerm(term);
+  
   window.onresize = function onResize() {
+    console.log('Window resize event');
     term.resizeTerm();
   };
+  
   window.wetty_term = term;
+  
+  // Final theme verification
+  console.log('Final terminal configuration:', {
+    theme: term.options.theme,
+    fontSize: term.options.fontSize,
+    fontFamily: term.options.fontFamily,
+    background: term.options.theme?.background,
+    foreground: term.options.theme?.foreground
+  });
+  
   return term;
 }
