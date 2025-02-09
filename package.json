@@ -71,7 +71,8 @@
     "xterm-addon-fit": "^0.7.0",
     "xterm-addon-image": "^0.5.0",
     "xterm-addon-web-links": "^0.8.0",
-    "yargs": "^17.7.2"
+    "yargs": "^17.7.2",
+    "sshx-xterm": "5.2.1",
   },
   "devDependencies": {
     "@snowpack/plugin-run-script": "^2.3.0",
