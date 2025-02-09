@@ -3,20 +3,35 @@ import { Terminal } from 'xterm';
 import { FitAddon } from 'xterm-addon-fit';
 import { ImageAddon } from 'xterm-addon-image';
 import { WebLinksAddon } from 'xterm-addon-web-links';
-
 import { terminal as termElement } from './disconnect/elements';
 import { configureTerm } from './term/confiruragtion';
 import { loadOptions } from './term/load';
 import type { Options } from './term/options';
 import type { Socket } from 'socket.io-client';
+import themes, { ThemeName } from "./term/themes";
+
+const TERMINAL_THEME= 'Tokyo Night' as ThemeName;
+const THEME = themes[TERMINAL_THEME];
 
 export class Term extends Terminal {
   socket: Socket;
   fitAddon: FitAddon;
   loadOptions: () => Options;
-
   constructor(socket: Socket) {
-    super({ allowProposedApi: true });
+    super({ 
+      allowProposedApi: true,
+      allowTransparency: false,
+      cursorBlink: false,
+      cursorStyle: "block",
+      // This is the monospace font family configured in Tailwind.
+      fontFamily:
+        '"Fira Code VF", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+      fontSize: 14,
+      fontWeight: 400,
+      fontWeightBold: 500,
+      lineHeight: 1.06,
+      theme: THEME,  // Changed from THEME to theme: THEME
+    });
     this.socket = socket;
     this.fitAddon = new FitAddon();
     this.loadAddon(this.fitAddon);
@@ -24,13 +39,11 @@ export class Term extends Terminal {
     this.loadAddon(new ImageAddon());
     this.loadOptions = loadOptions;
   }
-
   resizeTerm(): void {
     this.refresh(0, this.rows - 1);
     if (this.shouldFitTerm) this.fitAddon.fit();
     this.socket.emit('resize', { cols: this.cols, rows: this.rows });
   }
-
   get shouldFitTerm(): boolean {
     return this.loadOptions().wettyFitTerminal ?? true;
   }
