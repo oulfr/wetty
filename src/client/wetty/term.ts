@@ -8,23 +8,8 @@ import { configureTerm } from './term/confiruragtion';
 import { loadOptions } from './term/load';
 import type { Options } from './term/options';
 import type { Socket } from 'socket.io-client';
-import themes, { ThemeName } from "./term/themes";
 import type { ITerminalOptions } from 'xterm';
 
-const TERMINAL_THEME = 'Tokyo Night' as ThemeName;
-
-const THEME_OPTIONS: ITerminalOptions = {
-  allowProposedApi: true,
-  allowTransparency: false,
-  cursorBlink: false,
-  cursorStyle: 'block' as const,
-  fontFamily: '"Fira Code VF", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-  fontSize: 18,
-  fontWeight: 400,
-  fontWeightBold: 500,
-  lineHeight: 1.06,
-  theme: themes[TERMINAL_THEME]
-};
 export class Term extends Terminal {
   socket: Socket;
   fitAddon: FitAddon;
