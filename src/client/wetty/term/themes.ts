@@ -284,12 +284,12 @@ export const TERMINAL_OPTIONS: ITerminalOptions = {
   cursorBlink: false,
   cursorStyle: "block",
   fontFamily: '"Fira Code VF", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-  fontSize: 14,
+  fontSize: 18,
   fontWeight: 400,
   fontWeightBold: 500,
   lineHeight: 1.06,
   letterSpacing: 0,
-  theme: nordPro,  // Default theme
+  theme: defaultDark,  // Default theme
   scrollback: 5000,
   minimumContrastRatio: 4.5,  // WCAG AA compliance
   wordSeparator: " ()[]{}',\"`",
