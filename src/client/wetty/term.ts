@@ -4,7 +4,7 @@ import { FitAddon } from 'xterm-addon-fit';
 import { ImageAddon } from 'xterm-addon-image';
 import { WebLinksAddon } from 'xterm-addon-web-links';
 import { terminal as termElement } from './disconnect/elements';
-import { configureTerm } from './term/confiruragtion';
+//import { configureTerm } from './term/confiruragtion';
 import { loadOptions } from './term/load';
 import type { Options } from './term/options';
 import type { Socket } from 'socket.io-client';
