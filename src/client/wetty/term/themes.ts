@@ -284,7 +284,7 @@ export const TERMINAL_OPTIONS: ITerminalOptions = {
   cursorBlink: false,
   cursorStyle: "block",
   fontFamily: '"Fira Code VF", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-  fontSize: 18,
+  fontSize: 14,
   fontWeight: 400,
   fontWeightBold: 500,
   lineHeight: 1.06,
