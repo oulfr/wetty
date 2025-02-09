@@ -9,6 +9,7 @@ import { loadOptions } from './term/load';
 import type { Options } from './term/options';
 import type { Socket } from 'socket.io-client';
 import themes, { ThemeName } from "./term/themes";
+import type { ITerminalOptions } from 'xterm';
 
 const TERMINAL_THEME = 'Tokyo Night' as ThemeName;
 const THEME = themes[TERMINAL_THEME];
@@ -22,13 +23,13 @@ export class Term extends Terminal {
   loadOptions: () => Options;
   
   constructor(socket: Socket) {
-    console.log('Initializing Terminal with theme:', THEME);
+     console.log('Initializing Terminal with theme:', THEME);
     
-    const terminalOptions = { 
+    const terminalOptions: ITerminalOptions = { 
       allowProposedApi: true,
       allowTransparency: false,
       cursorBlink: false,
-      cursorStyle: "block",
+      cursorStyle: 'block' as const, // Explicitly type as 'block'
       fontFamily:
         '"Fira Code VF", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
       fontSize: 14,
