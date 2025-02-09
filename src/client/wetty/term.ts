@@ -7,6 +7,7 @@ import { terminal as termElement } from './disconnect/elements';
 import { configureTerm } from './term/confiruragtion';
 import { loadOptions } from './term/load';
 import type { Options } from './term/options';
+import { TERMINAL_OPTIONS } from './term/themes';
 import type { Socket } from 'socket.io-client';
 import type { ITerminalOptions } from 'xterm';
 
