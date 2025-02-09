@@ -19,7 +19,7 @@ const THEME_OPTIONS: ITerminalOptions = {
   cursorBlink: false,
   cursorStyle: 'block' as const,
   fontFamily: '"Fira Code VF", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-  fontSize: 16,
+  fontSize: 18,
   fontWeight: 400,
   fontWeightBold: 500,
   lineHeight: 1.06,
