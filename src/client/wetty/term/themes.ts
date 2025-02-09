@@ -1,4 +1,4 @@
-import type { ITheme } from "sshx-xterm";
+import type { ITheme, ITerminalOptions } from "sshx-xterm";
 
 /** VSCode default dark theme, from https://glitchbone.github.io/vscode-base16-term/. */
 const defaultDark: ITheme = {
@@ -202,6 +202,65 @@ const tokyoNight: ITheme = {
   brightWhite: "#acb0d0",
 };
 
+const modernMidnight: ITheme = {
+  foreground: "#E4E4E4",
+  background: "#1C1E26",
+  
+  cursor: "#61FFCA",
+  cursorAccent: "#1C1E26",
+  selectionBackground: "rgba(147, 163, 247, 0.3)",
+  selectionForeground: "#E4E4E4",
+  selectionInactiveBackground: "rgba(147, 163, 247, 0.2)",
+
+  black: "#2B2D37",
+  red: "#FF6B7D",
+  green: "#9AFFB3",
+  yellow: "#FFE59E",
+  blue: "#93A3F7",
+  magenta: "#D4A6FF",
+  cyan: "#89DDFF",
+  white: "#E4E4E4",
+
+  brightBlack: "#444B6A",
+  brightRed: "#FF8B98",
+  brightGreen: "#B4FFC9",
+  brightYellow: "#FFECB3",
+  brightBlue: "#B3C2FF",
+  brightMagenta: "#E2C4FF",
+  brightCyan: "#A8E7FF",
+  brightWhite: "#FFFFFF",
+};
+
+/** Nord-inspired professional theme */
+const nordPro: ITheme = {
+  foreground: "#D8DEE9",
+  background: "#2E3440",
+  
+  cursor: "#88C0D0",
+  cursorAccent: "#2E3440",
+  selectionBackground: "rgba(136, 192, 208, 0.3)",
+  selectionForeground: "#ECEFF4",
+  selectionInactiveBackground: "rgba(136, 192, 208, 0.2)",
+
+  black: "#3B4252",
+  red: "#BF616A",
+  green: "#A3BE8C",
+  yellow: "#EBCB8B",
+  blue: "#81A1C1",
+  magenta: "#B48EAD",
+  cyan: "#88C0D0",
+  white: "#E5E9F0",
+
+  brightBlack: "#4C566A",
+  brightRed: "#CF6D75",
+  brightGreen: "#B1C89D",
+  brightYellow: "#F0D399",
+  brightBlue: "#8CAFD2",
+  brightMagenta: "#C49BB9",
+  brightCyan: "#93CCDC",
+  brightWhite: "#ECEFF4",
+};
+
 const themes = {
   "VS Code Dark": defaultDark,
   Hybrid: hybrid,
@@ -212,10 +271,28 @@ const themes = {
   "Gruvbox Dark": gruvboxDark,
   "Solarized Dark": solarizedDark,
   "Tokyo Night": tokyoNight,
+  "Modern Midnight": modernMidnight,
+  "Nord Professional": nordPro
 };
 
 export type ThemeName = keyof typeof themes;
 
-export const defaultTheme: ThemeName = "VS Code Dark";
+// Terminal configuration with professional defaults
+export const TERMINAL_OPTIONS: ITerminalOptions = {
+  allowProposedApi: true,
+  allowTransparency: false,
+  cursorBlink: false,
+  cursorStyle: "block",
+  fontFamily: '"Fira Code VF", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+  fontSize: 18,
+  fontWeight: 400,
+  fontWeightBold: 500,
+  lineHeight: 1.06,
+  letterSpacing: 0,
+  theme: modernMidnight,  // Default theme
+  scrollback: 5000,
+  minimumContrastRatio: 4.5,  // WCAG AA compliance
+  wordSeparator: " ()[]{}',\"`",
+};
 
 export default themes;
