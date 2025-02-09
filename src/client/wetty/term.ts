@@ -19,7 +19,7 @@ export class Term extends Terminal {
   constructor(socket: Socket) {
     
     const terminalOptions: ITerminalOptions = { 
-     ...THEME_OPTIONS
+     ...TERMINAL_OPTIONS
     };
     
     super(terminalOptions);
