@@ -92,7 +92,7 @@ export function terminal(socket: Socket): Term | undefined {
   // Verify theme after opening
   console.log('Theme after opening terminal:', term.options.theme);
   
-  configureTerm(term);
+  //configureTerm(term);
   
   window.onresize = function onResize() {
     console.log('Window resize event');
